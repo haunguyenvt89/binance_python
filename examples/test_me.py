@@ -1,9 +1,11 @@
 from cgi import test
+from unittest import result
 from binance import Client, ThreadedWebsocketManager, ThreadedDepthCacheManager
+from binance.enums import KLINE_INTERVAL_1DAY
 # import pandas as pd
 
-api_key = ""
-api_secret = ""
+api_key = "wh9MGeix56gfB3f7fVYszrWUSdXbcGyIu7D2Evx1JScZ1oMGa8FThGfWFJMwu5Nk"
+api_secret = "PpeVgmzqZdIGb6CLdtbHx8D3X2HBhKzcNw2BKuuYOOsU3S095r2JC3ZUgsqBOQsn"
 client = Client(api_key, api_secret)
 
 ada_ticker = client.futures_symbol_ticker(symbol='ADAUSDT')
@@ -82,7 +84,15 @@ def test_buy_iota_2_trailing():
         quantity=10
     )
     print(result)
+def test_get_balance():
+        result = client.get_account_api_permissions(
 
+        )
+        print(result)
+
+def test_get_hight_low():
+    result  = client.futures_historical_klines('BTCUSDT', KLINE_INTERVAL_1DAY, '2022-02-12')
+    print(result)
 # =========
 # test_ada()
 # test_ada_1d()
@@ -90,5 +100,6 @@ def test_buy_iota_2_trailing():
 # test_buy_iota_2_limit()
 # test_sell_iota_2_limit()
 
-test_buy_iota_2_trailing()
+#test_buy_iota_2_trailing()
 # test_sell_iota_2_limit()
+test_get_hight_low()

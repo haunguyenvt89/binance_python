@@ -1,4 +1,5 @@
 from decimal import Decimal
+from hashlib import new
 from typing import Union, Optional, Dict
 
 import dateparser
@@ -6,6 +7,11 @@ import math
 import pytz
 
 from datetime import datetime
+
+from io import BytesIO
+
+import requests
+import pandas as pd
 
 
 def date_to_milliseconds(date_str: str) -> int:
@@ -70,3 +76,8 @@ def convert_ts_str(ts_str):
     if type(ts_str) == int:
         return ts_str
     return date_to_milliseconds(ts_str)
+
+
+
+def calcFibRetrace(high, low):
+	difference = high - low
